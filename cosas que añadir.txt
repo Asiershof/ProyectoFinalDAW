@@ -1,0 +1,58 @@
+-arreglar el menu desplegable
+
+-aviso de que se ha añadido el juego
+
+-revisar el porque no se ven las imagenes
+
+-añadir un boton para editar los juegos añadidos
+
+-añadir una descripcion(review) a la hora de meter el juego
+
+-usar bootstrap (jquery tambien pero es opcional)
+
+-cambiar el icono que esta ahora del usuario por una imagen que pueda elegir el en el perfil (poner una por defecto)
+
+-poner un logo para la pagina y cambiar el nombre que esta ahora(quitar el link a inicio desde el header)
+
+
+
+
+
+
+
+
+-DOCUMENTAR EL PROYECTO (ZZZZZZ)
+
+
+
+
+
+
+
+
+-boton para cambiar la contraseña(a futuro)
+
+-Posible modo oscuro (a futuro)
+
+-boton para recuperar contraseña si no t acuerdas (muy a futuro)
+
+-enlazarlo con un mensaje a twitter(muy a futuro)
+
+-usar una api para añadir las caratulas y los nombres de los videojuegos(me gustaria pero muuy a futuro)
+
+APIs de Videojuegos
+
+IGDB (Internet Games Database):
+    Descripción: IGDB es una de las bases de datos más completas de videojuegos, proporcionada por Twitch. Ofrece información detallada sobre una amplia variedad de juegos, incluyendo carátulas.
+    Uso: Requiere registrarse para obtener una clave de API.
+    Documentación: IGDB API Documentation
+
+RAWG Video Games Database:
+    Descripción: RAWG ofrece una API que proporciona información sobre videojuegos, incluyendo carátulas, descripciones, y más.
+    Uso: Requiere registrarse para obtener una clave de API.
+    Documentación: RAWG API Documentation
+
+Steam Web API:
+    Descripción: La API de Steam proporciona información sobre juegos disponibles en su plataforma, incluyendo carátulas y detalles del juego.
+    Uso: Requiere una clave de API que puedes obtener registrándote como desarrollador en Steam.
+    Documentación: Steam Web API Documentation
