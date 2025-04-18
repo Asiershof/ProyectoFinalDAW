@@ -6,7 +6,7 @@ require_once ROOT_PATH . 'controllers/controladorJuego.php';
 
 // Redirigir si no está logueado
 if (!estaLogueado()) {
-    redirigir('login.php');
+    redirigir(BASE_URL . 'views/login.php');
 }
 
 $controladorUsuario = new ControladorUsuario();
@@ -29,7 +29,7 @@ include ROOT_PATH . 'views/layouts/header.php';
         </div>
         
         <div class="acciones">
-            <a href="anyadirJuego.php" class="btn btn-primary">Añadir nuevo juego</a>
+            <a href="<?php echo BASE_URL; ?>views/anyadirJuego.php" class="btn btn-primary">Añadir nuevo juego</a>
         </div>
     </section>
     
@@ -43,8 +43,18 @@ include ROOT_PATH . 'views/layouts/header.php';
                 <?php foreach ($juegos as $juego): ?>
                     <div class="tarjeta-juego">
                         <div class="caratula">
-                            <?php if (!empty($juego['caratula'])): ?>
-                                <img src="<?php echo '../' . $juego['caratula']; ?>" alt="Carátula de <?php echo $juego['titulo']; ?>">
+                            <?php 
+                            $mostrar_imagen = false;
+                            if (!empty($juego['caratula']) && $juego['caratula'] !== '0') {
+                                $ruta_fisica = ROOT_PATH . $juego['caratula'];
+                                if (file_exists($ruta_fisica)) {
+                                    $mostrar_imagen = true;
+                                }
+                            }
+                            
+                            if ($mostrar_imagen): 
+                            ?>
+                                <img src="<?php echo BASE_URL . $juego['caratula']; ?>" alt="Carátula de <?php echo $juego['titulo']; ?>">
                             <?php else: ?>
                                 <div class="sin-caratula">Sin imagen</div>
                             <?php endif; ?>
@@ -56,7 +66,8 @@ include ROOT_PATH . 'views/layouts/header.php';
                             <p><strong>Fecha fin:</strong> <?php echo date('d/m/Y', strtotime($juego['fecha_fin'])); ?></p>
                             <p><strong>Horas jugadas:</strong> <?php echo $juego['horas_jugadas']; ?></p>
                             <div class="acciones-juego">
-                                <a href="../controllers/eliminarJuego.php?id=<?php echo $juego['id']; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este juego?')">Eliminar</a>
+                                <a href="<?php echo BASE_URL; ?>controllers/editarJuego.php?id=<?php echo $juego['id']; ?>" class="btn btn-primary" style="margin-right: 5px;">Editar</a>
+                                <a href="<?php echo BASE_URL; ?>controllers/eliminarJuego.php?id=<?php echo $juego['id']; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este juego?')">Eliminar</a>
                             </div>
                         </div>
                     </div>
@@ -67,4 +78,3 @@ include ROOT_PATH . 'views/layouts/header.php';
 </main>
 
 <?php include ROOT_PATH . 'views/layouts/footer.php'; ?>
-

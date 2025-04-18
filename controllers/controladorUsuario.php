@@ -38,8 +38,8 @@ class ControladorUsuario {
                 $_SESSION['usuario_id'] = $resultado;
                 $_SESSION['nombre_usuario'] = $nombre_usuario;
                 
-                // Redirigir al index en lugar de al perfil
-                return ['exito' => 'Registro exitoso', 'redirigir' => '../index.php'];
+                // Redirigir al index
+                return ['exito' => 'Registro exitoso', 'redirigir' => BASE_URL . 'index.php'];
             } else {
                 return ['error' => 'El nombre de usuario o correo ya está en uso'];
             }
@@ -64,8 +64,8 @@ class ControladorUsuario {
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
                 
-                // Redirigir al index en lugar de al perfil
-                return ['exito' => 'Inicio de sesión exitoso', 'redirigir' => '../index.php'];
+                // Redirigir al index
+                return ['exito' => 'Inicio de sesión exitoso', 'redirigir' => BASE_URL . 'index.php'];
             } else {
                 return ['error' => 'Nombre de usuario o contraseña incorrectos'];
             }
@@ -79,7 +79,7 @@ class ControladorUsuario {
         session_unset();
         session_destroy();
         
-        return ['exito' => 'Sesión cerrada correctamente', 'redirigir' => '../index.php'];
+        return ['exito' => 'Sesión cerrada correctamente', 'redirigir' => BASE_URL . 'index.php'];
     }
     
     // Obtener datos del usuario actual
@@ -92,4 +92,3 @@ class ControladorUsuario {
     }
 }
 ?>
-

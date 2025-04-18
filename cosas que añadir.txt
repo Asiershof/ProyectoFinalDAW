@@ -1,10 +1,6 @@
--arreglar el menu desplegable
+-aviso de que se ha añadido/eliminado el juego
 
--aviso de que se ha añadido el juego
-
--revisar el porque no se ven las imagenes
-
--añadir un boton para editar los juegos añadidos
+-Añadir una nota final del juego sobre 10
 
 -añadir una descripcion(review) a la hora de meter el juego
 
@@ -15,7 +11,58 @@
 -poner un logo para la pagina y cambiar el nombre que esta ahora(quitar el link a inicio desde el header)
 
 
+# Ideas para Futuras Mejoras
 
+Además de la funcionalidad de edición de juegos que acabo de implementar, aquí hay algunas ideas para mejorar tu aplicación en el futuro:
+
+## 1. Estadísticas y Análisis
+
+- **Panel de estadísticas**: Añadir un panel que muestre estadísticas como total de horas jugadas, plataforma más utilizada, promedio de horas por juego, etc.
+- **Gráficos visuales**: Implementar gráficos para visualizar datos como distribución de juegos por plataforma o tiempo dedicado a cada juego.
+- **Progreso anual**: Mostrar cuántos juegos ha completado el usuario cada mes/año.
+
+
+## 2. Funcionalidades Sociales
+
+- **Perfiles públicos**: Permitir a los usuarios hacer públicos sus perfiles para compartir su biblioteca de juegos.
+- **Comentarios y valoraciones**: Añadir la posibilidad de valorar los juegos y dejar comentarios.
+- **Compartir en redes sociales**: Botones para compartir juegos completados en redes sociales.
+
+
+## 3. Mejoras en la Gestión de Juegos
+
+- **Búsqueda y filtrado**: Implementar un sistema de búsqueda y filtros por plataforma, año, género, etc.
+- **Etiquetas personalizadas**: Permitir a los usuarios añadir etiquetas personalizadas a sus juegos.
+- **Estado de juego**: Añadir estados como "Completado", "En progreso", "Abandonado", etc.
+- **Lista de deseos**: Permitir a los usuarios crear una lista de juegos que quieren jugar en el futuro.
+
+
+## 4. Integración con APIs Externas
+
+- **API de IGDB o RAWG**: Integrar con bases de datos de videojuegos para obtener información detallada, carátulas, etc.
+- **Importación automática**: Permitir importar juegos desde plataformas como Steam, PlayStation Network, Xbox Live, etc.
+
+
+## 5. Mejoras en la Experiencia de Usuario
+
+- **Modo oscuro**: Implementar un tema oscuro para la aplicación.
+- **Personalización**: Permitir a los usuarios personalizar la apariencia de su perfil.
+- **Notificaciones**: Enviar notificaciones por correo electrónico para recordar juegos en progreso o celebrar hitos.
+- **Aplicación móvil**: Desarrollar una versión móvil de la aplicación.
+
+
+## 6. Seguridad y Privacidad
+
+- **Autenticación de dos factores**: Implementar 2FA para mayor seguridad.
+- **Recuperación de contraseña**: Añadir un sistema de recuperación de contraseña.
+- **Configuración de privacidad**: Permitir a los usuarios controlar qué información es pública y cuál es privada.
+
+
+## 7. Funcionalidades Premium
+
+- **Exportación de datos**: Permitir exportar la biblioteca de juegos en diferentes formatos (PDF, CSV, etc.).
+- **Almacenamiento ilimitado**: Ofrecer almacenamiento ilimitado para carátulas y capturas de pantalla.
+- **Estadísticas avanzadas**: Proporcionar análisis más detallados sobre hábitos de juego.
 
 
 

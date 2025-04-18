@@ -5,11 +5,16 @@ require_once ROOT_PATH . 'controllers/controladorJuego.php';
 
 // Redirigir si no está logueado
 if (!estaLogueado()) {
-    redirigir('login.php');
+    redirigir(BASE_URL . 'views/login.php');
 }
 
 $controlador = new ControladorJuego();
 $resultado = $controlador->añadir();
+
+// Manejar la redirección después de añadir un juego
+if (isset($resultado['redirigir'])) {
+    redirigir($resultado['redirigir']);
+}
 
 include ROOT_PATH . 'views/layouts/header.php';
 ?>
@@ -62,10 +67,10 @@ include ROOT_PATH . 'views/layouts/header.php';
             <div class="form-group">
                 <label for="caratula">Carátula del juego:</label>
                 <input type="file" id="caratula" name="caratula" accept="image/*">
-                <small>ESTO IGUAL SE BORRA Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 2MB </small>
+                <small>Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 2MB</small>
             </div>
             
-            <div class="form-group">
+            <div class="form-group div-btn">
                 <button type="submit" class="btn btn-primary">Añadir juego</button>
             </div>
         </form>
@@ -73,4 +78,3 @@ include ROOT_PATH . 'views/layouts/header.php';
 </main>
 
 <?php include ROOT_PATH . 'views/layouts/footer.php'; ?>
-

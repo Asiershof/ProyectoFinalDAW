@@ -8,14 +8,40 @@ class Juego {
     
     // Añadir un nuevo juego
     public function añadir($titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula, $id_usuario) {
+        // Preparar la consulta SQL
         $stmt = $this->conexion->prepare("INSERT INTO videojuegos (titulo, fecha_inicio, fecha_fin, horas_jugadas, plataforma, caratula, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssisii", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula, $id_usuario);
+        
+        // Si caratula es null o vacío, usar NULL en la base de datos
+        if (empty($caratula)) {
+            // Definir $null_value antes de usarlo
+            $null_value = null;
+            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $null_value, $id_usuario);
+        } else {
+            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula, $id_usuario);
+        }
         
         if ($stmt->execute()) {
             return $this->conexion->insert_id;
         }
         
         return false;
+    }
+    
+    // Editar un juego existente
+    public function editar($id, $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula) {
+        // Preparar la consulta SQL
+        $stmt = $this->conexion->prepare("UPDATE videojuegos SET titulo = ?, fecha_inicio = ?, fecha_fin = ?, horas_jugadas = ?, plataforma = ?, caratula = ? WHERE id = ?");
+        
+        // Si caratula es null o vacío, usar NULL en la base de datos
+        if (empty($caratula)) {
+            // Definir $null_value antes de usarlo
+            $null_value = null;
+            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $null_value, $id);
+        } else {
+            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula, $id);
+        }
+        
+        return $stmt->execute() && $stmt->affected_rows > 0;
     }
     
     // Obtener todos los juegos de un usuario
@@ -56,4 +82,3 @@ class Juego {
     }
 }
 ?>
-

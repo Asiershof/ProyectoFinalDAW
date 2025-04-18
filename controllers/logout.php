@@ -6,6 +6,5 @@ require_once ROOT_PATH . 'controllers/controladorUsuario.php';
 $controlador = new ControladorUsuario();
 $resultado = $controlador->logout();
 
-redirigir('../index.php');
+redirigir(BASE_URL . 'index.php');
 ?>
-

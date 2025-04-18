@@ -5,7 +5,7 @@ require_once ROOT_PATH . 'controllers/controladorUsuario.php';
 
 // Redirigir si ya está logueado
 if (estaLogueado()) {
-    redirigir('../index.php');
+    redirigir('index.php');
 }
 
 $controlador = new ControladorUsuario();
@@ -43,9 +43,8 @@ include ROOT_PATH . 'views/layouts/header.php';
             </div>
         </form>
         
-        <p class="form-link">¿No tienes una cuenta? <a href="registro.php">Regístrate</a></p>
+        <p class="form-link">¿No tienes una cuenta? <a href="<?php echo BASE_URL; ?>views/registro.php">Regístrate</a></p>
     </section>
 </main>
 
 <?php include ROOT_PATH . 'views/layouts/footer.php'; ?>
-
