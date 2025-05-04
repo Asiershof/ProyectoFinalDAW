@@ -11,14 +11,14 @@ include ROOT_PATH . 'views/layouts/header.php';
                 <h2 class="mb-3">¿Qué es esta página?</h2>
                 <p class="lead">
                     Esta página te permite guardar y gestionar los datos de los videojuegos que has completado. 
-                    Podrás registrar el título, la fecha de inicio y fin, las horas jugadas, la plataforma y subir una imagen de la carátula del juego.
+                    Podrás registrar varios datos de tu juego a la hora de añadirlo junto con una imagen de la carátula del juego y hasta poder darle una puntuación.
                 </p>
             </div>
         </section>
         
         <section>
             <h3 class="mb-4 text-center">Características principales</h3>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
                 <div class="col">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
@@ -38,8 +38,8 @@ include ROOT_PATH . 'views/layouts/header.php';
                 <div class="col">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h4 class="card-title">Seguimiento de plataformas</h4>
-                            <p class="card-text">Organiza tus juegos por plataforma para ver en cuál has jugado más títulos.</p>
+                            <h4 class="card-title">Puntua que te ha parecido</h4>
+                            <p class="card-text">Añade una valoración a tu juego e incluso una breve descripción de que te ha parecido.</p>
                         </div>
                     </div>
                 </div>
