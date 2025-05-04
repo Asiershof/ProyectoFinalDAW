@@ -44,6 +44,10 @@ class ControladorJuego {
             }
             
             $fechaHoy = date('Y-m-d');
+            if ($fechaInicio > $fechaHoy) {
+                return ['error' => 'La fecha de inicio no puede ser posterior a hoy.'];
+            }
+
             if ($fechaFin > $fechaHoy) {
                 return ['error' => 'La fecha de finalización no puede ser posterior a hoy.'];
             }
@@ -132,6 +136,10 @@ class ControladorJuego {
             }
 
             $fechaHoy = date('Y-m-d');
+            if ($fechaInicio > $fechaHoy) {
+                return ['error' => 'La fecha de inicio no puede ser posterior a hoy.'];
+            }
+
             if ($fechaFin > $fechaHoy) {
                 return ['error' => 'La fecha de finalización no puede ser posterior a hoy.'];
             }

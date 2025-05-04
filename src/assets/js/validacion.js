@@ -15,6 +15,8 @@ function validarFormularioJuego($formulario) {
     if (!titulo) errores.push("Debes añadir un título para el juego");
     if (!fechaInicio) errores.push("Debes especificar la fecha de inicio");
     if (!fechaFin) errores.push("Debes especificar la fecha de finalización");
+    if (fechaInicio && fechaInicio > fechaActual)
+        errores.push("La fecha de inicio no puede ser posterior a hoy");
     if (fechaInicio && fechaFin && new Date(fechaFin) < new Date(fechaInicio))
         errores.push("La fecha de finalización no puede ser anterior a la de inicio");
     if (fechaFin && fechaFin > fechaActual)

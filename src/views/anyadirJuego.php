@@ -41,7 +41,7 @@ include ROOT_PATH . 'views/layouts/header.php';
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">
                         <label for="fecha_inicio" class="form-label campoObligatorio">Fecha de inicio:</label>
-                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required max="<?php echo date('Y-m-d'); ?>">
                     </div>
                     
                     <div class="col-md-6">

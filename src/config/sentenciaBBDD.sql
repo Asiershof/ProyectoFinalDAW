@@ -1,8 +1,8 @@
-CREATE DATABASE bibliotecaJuegos;
+CREATE DATABASE IF NOT EXISTS bibliotecaJuegos;
 
 USE bibliotecaJuegos;
 
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
     correo_electronico VARCHAR(100) NOT NULL UNIQUE,
@@ -11,7 +11,7 @@ CREATE TABLE usuarios (
     avatar VARCHAR(255) DEFAULT 'assets/img/usuario.png'
 );
 
-CREATE TABLE videojuegos (
+CREATE TABLE IF NOT EXISTS videojuegos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
     fecha_inicio DATE NOT NULL,

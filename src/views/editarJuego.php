@@ -21,7 +21,7 @@
                     <div class="col-md-6">
                         <label for="fecha_inicio" class="form-label campoObligatorio">Fecha de inicio:</label>
                         <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required
-                            value="<?php echo htmlspecialchars($juego['fecha_inicio']); ?>">
+                            value="<?php echo htmlspecialchars($juego['fecha_inicio']); ?>" max="<?php echo date('Y-m-d'); ?>">
                     </div>
                     
                     <div class="col-md-6">
