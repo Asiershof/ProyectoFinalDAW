@@ -43,6 +43,7 @@ include ROOT_PATH . 'views/layouts/header.php';
                 <!-- Columna Derecha: Datos y Botón Editar -->
                 <div class="col-md-6">
                     <div class="mb-4 text-center"> 
+                        <p><strong>Usuario:</strong> <?php echo htmlspecialchars($usuario['nombre_usuario']); ?></p>
                         <p><strong>Correo:</strong> <?php echo htmlspecialchars($usuario['correo_electronico']); ?></p>
                         <p><strong>Fecha de registro:</strong> <?php echo date('d/m/Y', strtotime($usuario['fecha_registro'])); ?></p>
                         <p><strong>Total de juegos completados:</strong> <?php echo count($juegos); ?></p>
@@ -72,7 +73,7 @@ include ROOT_PATH . 'views/layouts/header.php';
             <?php else: ?>
                 <div id="juegos-container" class="listaJuegos row g-3">
                     <?php foreach ($juegos as $juego): ?>
-                        <div class="col-12 col-sm-6 col-md">
+                        <div class="col-12 col-sm-6 col-md-12 col-lg">
                             <a href="<?php echo BASE_URL; ?>views/verJuego.php?id=<?php echo $juego['id']; ?>" class="text-decoration-none text-dark">
                                 <div class="card tarjetaJuego h-100 shadow-sm">
                                     <div class="contenedorImagenTarjeta">
@@ -80,7 +81,7 @@ include ROOT_PATH . 'views/layouts/header.php';
                                         $caratula_url = obtenerUrlCaratula($juego);
                                         if ($caratula_url):
                                         ?>
-                                            <img src="<?php echo $caratula_url; ?>" alt="Carátula">
+                                            <img src="<?php echo $caratula_url; ?>" alt="Carátula" >
                                         <?php else: ?>
                                             <div class="sinCaratula">Sin imagen</div>
                                         <?php endif; ?>

@@ -1,14 +1,12 @@
-/**
- * Implementación de funcionalidades de Bootstrap utilizando jQuery
- */
+/* =================================================================
+  Implementación de funcionalidades de Bootstrap utilizando jQuery
+================================================================= */
 $(document).ready(function() {
-    // Navegación Toggle para móviles
     $('.navbar-toggler').on('click', function() {
         const objetivo = $(this).data('bs-target');
         $(objetivo).toggleClass('show');
     });
 
-    // Dropdown toggle
     $('.dropdown-toggle').on('click', function(e) {
         e.preventDefault();
         const $menuDesplegable = $(this).next('.dropdown-menu');
@@ -16,14 +14,12 @@ $(document).ready(function() {
         $menuDesplegable.toggleClass('show');
     });
 
-    // Cerrar dropdowns al hacer clic fuera
     $(document).on('click', function(e) {
         if (!$(e.target).closest('.dropdown').length) {
             $('.dropdown-menu').removeClass('show');
         }
     });
 
-    // Inicializar tooltips (si los usas)
     $('[data-bs-toggle="tooltip"]').each(function() {
         $(this).tooltip({
             title: $(this).data('bs-title') || $(this).attr('title'),
@@ -32,7 +28,6 @@ $(document).ready(function() {
         });
     });
 
-    // Inicializar popovers (si los usas)
     $('[data-bs-toggle="popover"]').each(function() {
         $(this).popover({
             content: $(this).data('bs-content'),
@@ -42,7 +37,6 @@ $(document).ready(function() {
         });
     });
 
-    // Funcionalidad para modales de Bootstrap
     $('[data-bs-toggle="modal"]').on('click', function() {
         const objetivo = $(this).data('bs-target');
         $(objetivo).modal('mostrar');
@@ -52,7 +46,6 @@ $(document).ready(function() {
         $(this).closest('.modal').modal('ocultar');
     });
 
-    // Método para mostrar/ocultar modales
     $.fn.modal = function(accion) {
         return this.each(function() {
             if (accion === 'mostrar') {

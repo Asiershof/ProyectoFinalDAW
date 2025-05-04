@@ -6,12 +6,9 @@ class Juego {
         $this->conexion = $conexion;
     }
     
-    // Añadir un nuevo juego
     public function anyadir($titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $caratula, $puntuacion, $resenya, $idUsuario) {
-        // Preparar consulta
         $stmt = $this->conexion->prepare("INSERT INTO videojuegos (titulo, fecha_inicio, fecha_fin, horas_jugadas, plataforma, caratula, puntuacion, resenya, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
-        // Si carátula es null
         if (empty($caratula)) {
             $valorNulo = null;
             $stmt->bind_param("sssdssisi", $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $valorNulo, $puntuacion, $resenya, $idUsuario);
@@ -19,7 +16,6 @@ class Juego {
             $stmt->bind_param("sssdssisi", $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $caratula, $puntuacion, $resenya, $idUsuario);
         }
         
-        // Ejecutar
         if ($stmt->execute()) {
             return $this->conexion->insert_id;
         }
@@ -27,15 +23,10 @@ class Juego {
         return false;
     }
     
-    // Editar un juego existente
     public function editar($id, $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $caratula, $puntuacion, $resenya) {
-        // Mismo patrón que anyadir()
-        // Preparar la consulta SQL
         $stmt = $this->conexion->prepare("UPDATE videojuegos SET titulo = ?, fecha_inicio = ?, fecha_fin = ?, horas_jugadas = ?, plataforma = ?, caratula = ?, puntuacion = ?, resenya = ? WHERE id = ?");
         
-        // Si caratula es null o vacío, usar NULL en la base de datos
         if (empty($caratula)) {
-            // Definir $valorNulo antes de usarlo
             $valorNulo = null;
             $stmt->bind_param("sssdssisi", $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $valorNulo, $puntuacion, $resenya, $id);
         } else {
@@ -45,9 +36,8 @@ class Juego {
         return $stmt->execute() && $stmt->affected_rows > 0;
     }
     
-    // Obtener todos los juegos de un usuario
     public function obtenerPorUsuario($idUsuario) {
-        $stmt = $this->conexion->prepare("SELECT * FROM videojuegos WHERE id_usuario = ? ORDER BY fecha_fin DESC");
+        $stmt = $this->conexion->prepare("SELECT * FROM videojuegos WHERE id_usuario = ? ORDER BY titulo ASC");
         $stmt->bind_param("i", $idUsuario);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -60,7 +50,6 @@ class Juego {
         return $juegos;
     }
     
-    // Obtener un juego por ID
     public function obtenerPorId($id) {
         $stmt = $this->conexion->prepare("SELECT * FROM videojuegos WHERE id = ?");
         $stmt->bind_param("i", $id);
@@ -74,7 +63,6 @@ class Juego {
         return false;
     }
     
-    // Eliminar un juego
     public function eliminar($id, $idUsuario) {
         $stmt = $this->conexion->prepare("DELETE FROM videojuegos WHERE id = ? AND id_usuario = ?");
         $stmt->bind_param("ii", $id, $idUsuario);

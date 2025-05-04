@@ -24,5 +24,4 @@ if (isset($resultado['exito']) && isset($resultado['toast_message'])) {
     redirigir(BASE_URL . 'views/verJuego.php?id=' . $id, $resultado['toast_message'], $resultado['toast_type']);
 }
 
-// Aquí solo se incluye la vista, pasándole $juego y $resultado
 include ROOT_PATH . 'views/editarJuego.php';

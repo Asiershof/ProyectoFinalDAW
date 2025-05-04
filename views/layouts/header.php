@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca de Juegos Completados</title>
     
-    <!-- Bootstrap CSS - PRIMERO -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
-    <!-- Tus estilos - DESPUÉS de Bootstrap para poder sobrescribir clases -->
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/indexStyle.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/estilos.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/toast.css">
 </head>
 <body>
@@ -23,7 +19,6 @@
             <div class="container">
                 <a class="navbar-brand" href="<?php echo BASE_URL; ?>index.php">Mi Biblioteca de Juegos</a>
                 
-                <!-- Corregido: Añadidos atributos que faltaban al botón toggler -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -35,7 +30,6 @@
                         </li>
                         <?php if (isset($_SESSION['usuario_id'])): ?>
                             <?php
-                            // Obtener datos del usuario para el avatar
                             require_once ROOT_PATH . 'models/Usuario.php';
                             $modeloUsuario = new Usuario($conn);
                             $datosUsuario = $modeloUsuario->obtenerPorId($_SESSION['usuario_id']);
@@ -51,7 +45,6 @@
                                 <a class="nav-link" href="<?php echo BASE_URL; ?>views/anyadirJuego.php">Añadir Juego</a>
                             </li>
                             
-                            <!-- Menú móvil: enlaces directos en lugar de dropdown -->
                             <li class="nav-item d-block d-lg-none">
                                 <a class="nav-link" href="<?php echo BASE_URL; ?>views/perfil.php">
                                     <img src="<?php echo $avatar_url; ?>" alt="Avatar" class="rounded-circle me-2 avatarCabecera">
@@ -62,7 +55,6 @@
                                 <a class="nav-link" href="<?php echo BASE_URL; ?>controllers/logout.php">Cerrar sesión</a>
                             </li>
                             
-                            <!-- Menú desktop: dropdown con avatar y nombre -->
                             <li class="nav-item dropdown d-none d-lg-block">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="<?php echo $avatar_url; ?>" alt="Avatar" class="rounded-circle me-2 avatarCabecera">

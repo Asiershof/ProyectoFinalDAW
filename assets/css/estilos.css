@@ -144,7 +144,6 @@ footer .hover-link:hover {
 /* ============================================
    TARJETAS
 ============================================ */
-/* Cambiar .card-juego a .tarjetaJuego */
 .tarjetaJuego {
     transition: transform 0.3s, box-shadow 0.3s;
     height: 100%;
@@ -154,13 +153,11 @@ footer .hover-link:hover {
     padding: 10px 0;
 }
 
-/* Cambiar .card-juego:hover a .tarjetaJuego:hover */
 .tarjetaJuego:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px #00000026 !important;
 }
 
-/* Cambiar .card-juego .card-title a .tarjetaJuego .tituloTarjeta */
 .tarjetaJuego .tituloTarjeta {
     font-size: 1.15rem;
     white-space: normal;
@@ -169,15 +166,12 @@ footer .hover-link:hover {
     margin-bottom: 0.5rem;
 }
 
-/* Vista en lista */
-/* Cambiar .listaJuegos .card-juego a .listaJuegos .tarjetaJuego */
 .listaJuegos .tarjetaJuego {
     flex-direction: row;
     min-height: 120px;
     padding: 0;
 }   
 
-/* Cambiar .listaJuegos .card-body a .listaJuegos .cuerpoTarjeta */
 .listaJuegos .cuerpoTarjeta {
     text-align: left !important;
     flex: 1;
@@ -237,7 +231,6 @@ footer .hover-link:hover {
     border-radius: 5px;
 }
 
-/* Estilos de avatar */
 .contenedorAvatar {
     position: relative;
     display: inline-block;
@@ -289,26 +282,22 @@ footer .hover-link:hover {
     transition: color 0.2s;
 }
 
-/* Cambiar .estrella.active a .estrella.activa */
 .estrella.activa {
     color: #ffc107;
 }
 
-/* Cambiar .stars-display a .contenedorEstrellas */
 .contenedorEstrellas .estrella {
     font-size: 20px;
     cursor: default;
     pointer-events: none;
 }
 
-/* Cambiar .estrellas-mini a .estrellasMini */
 .estrellasMini {
     color: #ffc107;
     font-size: 14px;
     margin-left: 5px;
 }
 
-/* Cambiar .puntuacion-valor a .puntuacionValor */
 .puntuacionValor {
     font-weight: bold;
 }
@@ -360,7 +349,6 @@ footer .hover-link:hover {
 /* ============================================
    CONTENIDO
 ============================================ */
-/* Cambiar .contenidoResena a .contenidoReseña */
 .contenidoReseña {
     background-color: #f9f9f9;
     padding: 1rem;
@@ -368,7 +356,6 @@ footer .hover-link:hover {
     line-height: 1.6;
 }
 
-/* Cambiar .sinResena a .sinReseña */
 .sinReseña {
     color: #777;
     font-style: italic;
@@ -378,7 +365,6 @@ footer .hover-link:hover {
    RESPONSIVE
 ============================================ */
 @media (max-width: 767.98px) {
-    /* Cambiar referencias a .card-juego y .tarjetaJuego */
     .listaJuegos .tarjetaJuego,
     .tarjetaJuego {
         min-width: 100%;

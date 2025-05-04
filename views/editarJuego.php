@@ -5,7 +5,7 @@
         <?php if (!empty($resultado['error'])): ?>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    showToast("<?php echo addslashes($resultado['error']); ?>", "error");
+                    mostrarToast("<?php echo addslashes($resultado['error']); ?>", "error");
                 });
             </script>
         <?php endif; ?>
@@ -27,7 +27,7 @@
                     <div class="col-md-6">
                         <label for="fecha_fin" class="form-label campoObligatorio">Fecha de finalización:</label>
                         <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required
-                            value="<?php echo htmlspecialchars($juego['fecha_fin']); ?>">
+                            value="<?php echo htmlspecialchars($juego['fecha_fin']); ?>" max="<?php echo date('Y-m-d'); ?>">
                     </div>
                 </div>
                 
@@ -74,15 +74,12 @@
                 </div>
                 
                 <div class="row g-3 mb-4 mt-4 text-center align-items-center justify-content-center">
-                    <!-- Contenedor principal: siempre visible -->
                     <div class="col-12 col-lg-6 mb-3 mb-md-0" id="caratula-container">
                         <div class="contenedorImagenTarjeta position-relative">
                             <?php
                             $caratula_url = obtenerUrlCaratula($juego);
                             ?>
-                            <!-- Imagen: visible solo si hay carátula -->
                             <img src="<?php echo $caratula_url ? $caratula_url : ''; ?>" alt="Carátula" class="rounded shadow-sm mw-100 h-auto <?php echo !$caratula_url ? 'd-none' : ''; ?>" id="caratula-preview">
-                            <!-- Mensaje "Sin imagen": visible solo si NO hay carátula -->
                             <div class="sinCaratula <?php echo $caratula_url ? 'd-none' : ''; ?>">
                                 Sin imagen
                             </div>

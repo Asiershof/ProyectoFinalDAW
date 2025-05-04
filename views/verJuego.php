@@ -3,12 +3,10 @@ session_start();
 require_once '../config/configuracion.php';
 require_once ROOT_PATH . 'controllers/controladorJuego.php';
 
-// Redirigir si no está logueado
 if (!estaLogueado()) {
     redirigir(BASE_URL . 'views/login.php', 'Debes iniciar sesión para ver detalles de juegos', 'warning');
 }
 
-// Verificar si se proporcionó un ID
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     redirigir(BASE_URL . 'views/perfil.php', 'No se especificó qué juego ver', 'error');
 }
@@ -16,10 +14,8 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 $id = (int)$_GET['id'];
 $controlador = new ControladorJuego();
 
-// Obtener el juego
 $juego = $controlador->obtenerJuego($id);
 
-// Verificar si el juego existe y pertenece al usuario actual
 if (!$juego || $juego['id_usuario'] != $_SESSION['usuario_id']) {
     redirigir(BASE_URL . 'views/perfil.php', 'No tienes permiso para ver este juego', 'error');
 }

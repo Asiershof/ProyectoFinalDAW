@@ -1,3 +1,54 @@
+// Ejemplo para validar fechas
+function validarFechas() {
+    const fechaInicio = new Date($("#fecha_inicio").val());
+    const fechaFin = new Date($("#fecha_fin").val());
+    const hoy = new Date();
+    
+    if (fechaFin < fechaInicio) {
+        mostrarToast("La fecha de finalización no puede ser anterior a la fecha de inicio", "error");
+        return false;
+    }
+    
+    if (fechaFin > hoy) {
+        mostrarToast("La fecha de finalización no puede ser posterior a hoy", "warning");
+        return false;
+    }
+    
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Implementa política de contraseñas robustas:
+function validarContraseña(password) {
+    // Al menos 8 caracteres, una mayúscula, una minúscula y un número
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+}
+
+$('#password').on('input', function() {
+    const password = $(this).val();
+    const $feedback = $('#password-feedback');
+    
+    if (password.length < 8) {
+        $feedback.text('La contraseña debe tener al menos 8 caracteres').css('color', '#dc3545');
+    } else if (!validarContraseña(password)) {
+        $feedback.text('La contraseña debe incluir mayúsculas, minúsculas y números').css('color', '#dc3545');
+    } else {
+        $feedback.text('Contraseña válida').css('color', '#28a745');
+    }
+});
+
+
 # Ideas para Futuras Mejoras
 
 Además de la funcionalidad de edición de juegos que acabo de implementar, aquí hay algunas ideas para mejorar tu aplicación en el futuro:

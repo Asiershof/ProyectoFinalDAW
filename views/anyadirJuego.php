@@ -3,7 +3,6 @@ session_start();
 require_once '../config/configuracion.php';
 require_once ROOT_PATH . 'controllers/controladorJuego.php';
 
-// Redirigir si no está logueado
 if (!estaLogueado()) {
     redirigir(BASE_URL . 'views/login.php', 'Debes iniciar sesión para añadir juegos', 'warning');
 }
@@ -11,7 +10,6 @@ if (!estaLogueado()) {
 $controlador = new ControladorJuego();
 $resultado = $controlador->anyadir();
 
-// Manejar la redirección después de añadir un juego
 if (isset($resultado['redirigir'])) {
     $toast_message = isset($resultado['toast_message']) ? $resultado['toast_message'] : null;
     $toast_type = isset($resultado['toast_type']) ? $resultado['toast_type'] : 'info';
@@ -48,7 +46,7 @@ include ROOT_PATH . 'views/layouts/header.php';
                     
                     <div class="col-md-6">
                         <label for="fecha_fin" class="form-label campoObligatorio">Fecha de finalización:</label>
-                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
+                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required max="<?php echo date('Y-m-d'); ?>">
                     </div>
                 </div>
                 

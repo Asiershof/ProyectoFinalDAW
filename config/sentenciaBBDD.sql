@@ -1,10 +1,7 @@
--- Crear la base de datos
 CREATE DATABASE bibliotecaJuegos;
 
--- Usar la base de datos recién creada
 USE bibliotecaJuegos;
 
--- Crear la tabla de usuarios
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
@@ -14,7 +11,6 @@ CREATE TABLE usuarios (
     avatar VARCHAR(255) DEFAULT 'assets/img/usuario.png'
 );
 
--- Crear la tabla de videojuegos
 CREATE TABLE videojuegos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,

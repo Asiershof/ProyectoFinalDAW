@@ -12,10 +12,8 @@ class NotificacionToast {
     }
 
     mostrar(mensaje, tipo = "info", duracion = this.duracionPredeterminada) {
-        // Crear el elemento toast
         const toast = $("<div>").addClass(`toast toast-${tipo}`);
 
-        // Icono según el tipo
         let icono = "";
         switch (tipo) {
             case "success":

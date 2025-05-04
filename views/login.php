@@ -11,7 +11,6 @@ if (estaLogueado()) {
 $controlador = new ControladorUsuario();
 $resultado = $controlador->login();
 
-// Manejar la redirección después del login
 if (isset($resultado['redirigir'])) {
     $toast_message = isset($resultado['toast_message']) ? $resultado['toast_message'] : null;
     $toast_type = isset($resultado['toast_type']) ? $resultado['toast_type'] : 'info';

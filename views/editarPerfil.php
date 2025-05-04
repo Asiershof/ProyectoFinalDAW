@@ -47,12 +47,10 @@
                         <hr class="my-4">
 
                         <h5 class="mb-3">Cambiar avatar</h5>
-                        <!-- Contenedor de Vista previa -->
                         <div id="avatar-preview-container" class="mb-3 text-center <?php echo empty($usuario['avatar']) || $usuario['avatar'] === 'assets/img/usuario.png' ? 'd-none' : ''; ?>">
                             <h6 class="text-muted mb-2">Vista previa</h6>
-                            <img id="avatar-preview-modal" src="<?php echo $avatar_url; // Necesitarás pasar $avatar_url desde el controlador ?>" alt="Vista previa del nuevo avatar" class="rounded-circle img-thumbnail mb-3 object-fit-cover tamanoVistaAvatar">
+                            <img id="avatar-preview-modal" src="<?php echo $avatar_url;?>" alt="Vista previa del nuevo avatar" class="rounded-circle img-thumbnail mb-3 object-fit-cover tamanoVistaAvatar">
                         </div>
-                        <!-- Fin Contenedor de Vista previa -->
                         
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Selecciona una nueva imagen:</label>
