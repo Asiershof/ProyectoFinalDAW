@@ -9,17 +9,14 @@ function validarFormularioJuego($formulario) {
     const resenya = $("#resenya").val().trim();
     const caratula = $("#caratula").length ? $("#caratula")[0].files[0] : null;
     
-    // Obtener la fecha actual en formato YYYY-MM-DD para comparar con la fecha de finalización
     const hoy = new Date();
     const fechaActual = hoy.toISOString().split('T')[0];
 
-    // Validar cada campo individualmente con mensajes específicos
     if (!titulo) errores.push("Debes añadir un título para el juego");
     if (!fechaInicio) errores.push("Debes especificar la fecha de inicio");
     if (!fechaFin) errores.push("Debes especificar la fecha de finalización");
     if (fechaInicio && fechaFin && new Date(fechaFin) < new Date(fechaInicio))
         errores.push("La fecha de finalización no puede ser anterior a la de inicio");
-    // Añadimos la validación de que la fecha de fin no sea posterior a hoy
     if (fechaFin && fechaFin > fechaActual)
         errores.push("La fecha de finalización no puede ser posterior a hoy");
     if (!horasJugadas || horasJugadas < 1)
@@ -41,12 +38,10 @@ function validarFormularioJuego($formulario) {
 $(document).ready(function () {
     const $formularioJuego = $('form[action=""], form[action*="anyadirJuego"], form[action*="editarJuego"]');
     if ($formularioJuego.length) {
-        // Recuperar datos almacenados si existen
         if (localStorage.getItem('formData')) {
             try {
                 const formData = JSON.parse(localStorage.getItem('formData'));
 
-                // Rellenar el formulario con los datos guardados
                 $('#titulo').val(formData.titulo || '');
                 $('#fecha_inicio').val(formData.fechaInicio || '');
                 $('#fecha_fin').val(formData.fechaFin || '');
@@ -55,12 +50,10 @@ $(document).ready(function () {
                 $('#puntuacion').val(formData.puntuacion || 5);
                 $('#resenya').val(formData.resenya || '');
 
-                // Actualizar las estrellas
                 if (formData.puntuacion) {
                     actualizarEstrellas(formData.puntuacion);
                 }
 
-                // Limpiar datos guardados después de usarlos
                 localStorage.removeItem('formData');
             } catch (e) {
                 console.error("Error al recuperar datos del formulario:", e);
@@ -84,7 +77,6 @@ $(document).ready(function () {
             if (!validarFormularioJuego($(this))) {
                 e.preventDefault();
             } else {
-                // Si la validación es exitosa, borrar los datos guardados
                 localStorage.removeItem('formData');
             }
         });
