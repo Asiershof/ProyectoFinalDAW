@@ -1,16 +1,3 @@
--aviso de que se ha añadido/eliminado el juego
-
--Añadir una nota final del juego sobre 10
-
--añadir una descripcion(review) a la hora de meter el juego
-
--usar bootstrap (jquery tambien pero es opcional)
-
--cambiar el icono que esta ahora del usuario por una imagen que pueda elegir el en el perfil (poner una por defecto)
-
--poner un logo para la pagina y cambiar el nombre que esta ahora(quitar el link a inicio desde el header)
-
-
 # Ideas para Futuras Mejoras
 
 Además de la funcionalidad de edición de juegos que acabo de implementar, aquí hay algunas ideas para mejorar tu aplicación en el futuro:

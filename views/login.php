@@ -13,38 +13,51 @@ $resultado = $controlador->login();
 
 // Manejar la redirección después del login
 if (isset($resultado['redirigir'])) {
-    redirigir($resultado['redirigir']);
+    $toast_message = isset($resultado['toast_message']) ? $resultado['toast_message'] : null;
+    $toast_type = isset($resultado['toast_type']) ? $resultado['toast_type'] : 'info';
+    redirigir($resultado['redirigir'], $toast_message, $toast_type);
 }
 
 include ROOT_PATH . 'views/layouts/header.php';
 ?>
 
-<main>
-    <section class="form-container">
-        <h2>Iniciar Sesión</h2>
-        
-        <?php if (isset($resultado['error'])): ?>
-            <div class="mensaje error"><?php echo $resultado['error']; ?></div>
-        <?php endif; ?>
-        
-        <form action="" method="POST">
-            <div class="form-group">
-                <label for="nombre_usuario">Nombre de usuario:</label>
-                <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+<main class="py-5 my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <section class="bg-white rounded shadow-sm p-4 mb-4">
+                    <h2 class="mb-4 text-center">Iniciar sesión</h2>
+
+                    <?php if (isset($resultado['error'])): ?>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                mostrarToast("<?php echo addslashes($resultado['error']); ?>", "error");
+                            });
+                        </script>
+                    <?php endif; ?>
+                    <form action="" method="POST">
+                        <div class="mb-3">
+                            <label for="nombre_usuario" class="form-label campoObligatorio">Nombre de usuario:</label>
+                            <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label campoObligatorio">Contraseña:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+
+                        <div class="d-grid gap-2 col-8 mx-auto mt-4">
+                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                        </div>
+                    </form>
+
+                    <p class="text-center mt-3">
+                        ¿No tienes una cuenta? <a href="<?php echo BASE_URL; ?>views/registro.php">Regístrate</a>
+                    </p>
+                </section>
             </div>
-            
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <div class="form-group div-btn">
-                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-            </div>
-        </form>
-        
-        <p class="form-link">¿No tienes una cuenta? <a href="<?php echo BASE_URL; ?>views/registro.php">Regístrate</a></p>
-    </section>
+        </div>
+    </div>
 </main>
 
 <?php include ROOT_PATH . 'views/layouts/footer.php'; ?>

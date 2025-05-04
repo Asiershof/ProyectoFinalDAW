@@ -12,44 +12,33 @@ function estaLogueado() {
     return isset($_SESSION['usuario_id']);
 }
 
-// Función para redirigir - versión mejorada
-function redirigir($url) {
-    // Si la URL ya es absoluta (comienza con http:// o https://), usarla directamente
+// Función para redirigir con mensajes
+function redirigir($url, $mensajeToast = null, $tipoToast = 'info') {
+    // Si la URL ya es absoluta, usarla directamente
     if (preg_match('/^https?:\/\//', $url)) {
-        header('Location: ' . $url);
-        exit;
+        $urlRedireccion = $url;
     }
-    
     // Si la URL comienza con BASE_URL, usarla directamente
-    if (strpos($url, BASE_URL) === 0) {
-        header('Location: ' . $url);
-        exit;
+    else if (strpos($url, BASE_URL) === 0) {
+        $urlRedireccion = $url;
+    }
+    else {
+        // Determinar si estamos en un subdirectorio
+        $scriptActual = $_SERVER['SCRIPT_NAME'];
+        $enVistas = strpos($scriptActual, '/views/') !== false;
+        $enControladores = strpos($scriptActual, '/controllers/') !== false;
+        
+        // Construir la URL completa
+        $urlRedireccion = BASE_URL . $url;
     }
     
-    // Determinar si estamos en un subdirectorio
-    $current_script = $_SERVER['SCRIPT_NAME'];
-    $in_views = strpos($current_script, '/views/') !== false;
-    $in_controllers = strpos($current_script, '/controllers/') !== false;
-    
-    // Si la URL comienza con 'views/' y ya estamos en views, quitar 'views/'
-    if ($in_views && strpos($url, 'views/') === 0) {
-        $url = substr($url, 6); // Quitar 'views/'
+    // Añadir parámetros de toast si se proporcionan
+    if ($mensajeToast !== null) {
+        $separator = (strpos($urlRedireccion, '?') !== false) ? '&' : '?';
+        $urlRedireccion .= $separator . 'toast_message=' . urlencode($mensajeToast) . '&toast_type=' . urlencode($tipoToast);
     }
     
-    // Si la URL comienza con 'controllers/' y ya estamos en controllers, quitar 'controllers/'
-    if ($in_controllers && strpos($url, 'controllers/') === 0) {
-        $url = substr($url, 12); // Quitar 'controllers/'
-    }
-    
-    // Si la URL comienza con '/', quitarla para evitar problemas
-    if (strpos($url, '/') === 0) {
-        $url = substr($url, 1);
-    }
-    
-    // Construir la URL completa
-    $full_url = BASE_URL . $url;
-    
-    header('Location: ' . $full_url);
+    header('Location: ' . $urlRedireccion);
     exit;
 }
 
@@ -78,20 +67,41 @@ function subirImagen($archivo, $directorio = 'assets/uploads/') {
     }
     
     // Crear directorio si no existe
-    $ruta_completa = ROOT_PATH . $directorio;
-    if (!verificarDirectorio($ruta_completa)) {
+    $rutaCompleta = ROOT_PATH . $directorio;
+    if (!verificarDirectorio($rutaCompleta)) {
         return false;
     }
     
     // Generar nombre único para el archivo
-    $nombre_archivo = uniqid() . '_' . basename($archivo['name']);
-    $ruta_destino = $ruta_completa . $nombre_archivo;
+    $nombreArchivo = uniqid() . '_' . basename($archivo['name']);
+    $rutaDestino = $rutaCompleta . $nombreArchivo;
     
     // Mover archivo al directorio de destino
-    if (move_uploaded_file($archivo['tmp_name'], $ruta_destino)) {
-        return $directorio . $nombre_archivo;
+    if (move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
+        return $directorio . $nombreArchivo;
     }
     
     return false;
+}
+
+// Función para obtener la URL de la carátula de un juego
+function obtenerUrlCaratula($juego) {
+    if (!empty($juego['caratula'])) {
+        // 1. Intentar con la ruta directa (como está almacenada en la BD)
+        $rutaCompleta = ROOT_PATH . $juego['caratula'];
+        if (file_exists($rutaCompleta)) {
+            return BASE_URL . $juego['caratula'];
+        }
+        
+        // 2. Intentar con la ruta basada en DIR_CARATULAS
+        $rutaAlternativa = ROOT_PATH . DIR_CARATULAS . basename($juego['caratula']);
+        if (file_exists($rutaAlternativa)) {
+            return BASE_URL . DIR_CARATULAS . basename($juego['caratula']);
+        }
+        
+        // 3. Si todo falla, devolver la ruta original (podría funcionar en algunos casos)
+        return BASE_URL . $juego['caratula'];
+    }
+    return null;
 }
 ?>

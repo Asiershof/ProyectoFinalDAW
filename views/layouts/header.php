@@ -4,35 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca de Juegos Completados</title>
+    
+    <!-- Bootstrap CSS - PRIMERO -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- Tus estilos - DESPUÉS de Bootstrap para poder sobrescribir clases -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/indexStyle.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/toast.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="logo">
-                <h1><a href="<?php echo BASE_URL; ?>index.php">Mi Biblioteca de Juegos</a></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="<?php echo BASE_URL; ?>index.php">Inicio</a></li>
-                    <?php if (isset($_SESSION['usuario_id'])): ?>
-                        <li><a href="<?php echo BASE_URL; ?>views/anyadirJuego.php">Añadir Juego</a></li>
-                        <li class="usuario-dropdown">
-                            <div class="usuario-info">
-                                <span class="icono-usuario">👤</span>
-                                <span class="nombre-usuario"><?php echo $_SESSION['nombre_usuario']; ?></span>
-                            </div>
-                            <div class="dropdown-menu">
-                                <a href="<?php echo BASE_URL; ?>views/perfil.php">Mi Perfil</a>
-                                <a href="<?php echo BASE_URL; ?>controllers/logout.php">Cerrar sesión</a>
-                            </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="<?php echo BASE_URL; ?>index.php">Mi Biblioteca de Juegos</a>
+                
+                <!-- Corregido: Añadidos atributos que faltaban al botón toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse text-center my-4" id="navbarMain">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo BASE_URL; ?>index.php">Inicio</a>
                         </li>
-                    <?php else: ?>
-                        <li><a href="<?php echo BASE_URL; ?>views/login.php">Iniciar sesión</a></li>
-                        <li><a href="<?php echo BASE_URL; ?>views/registro.php">Registrarse</a></li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
-        </div>
+                        <?php if (isset($_SESSION['usuario_id'])): ?>
+                            <?php
+                            // Obtener datos del usuario para el avatar
+                            require_once ROOT_PATH . 'models/Usuario.php';
+                            $modeloUsuario = new Usuario($conn);
+                            $datosUsuario = $modeloUsuario->obtenerPorId($_SESSION['usuario_id']);
+                            $avatar_url = BASE_URL . 'assets/img/usuario.png';
+                            if (!empty($datosUsuario['avatar'])) {
+                                $avatar_path = ROOT_PATH . $datosUsuario['avatar'];
+                                if (file_exists($avatar_path)) {
+                                    $avatar_url = BASE_URL . $datosUsuario['avatar'];
+                                }
+                            }
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo BASE_URL; ?>views/anyadirJuego.php">Añadir Juego</a>
+                            </li>
+                            
+                            <!-- Menú móvil: enlaces directos en lugar de dropdown -->
+                            <li class="nav-item d-block d-lg-none">
+                                <a class="nav-link" href="<?php echo BASE_URL; ?>views/perfil.php">
+                                    <img src="<?php echo $avatar_url; ?>" alt="Avatar" class="rounded-circle me-2 avatarCabecera">
+                                    Mi Perfil
+                                </a>
+                            </li>
+                            <li class="nav-item d-block d-lg-none">
+                                <a class="nav-link" href="<?php echo BASE_URL; ?>controllers/logout.php">Cerrar sesión</a>
+                            </li>
+                            
+                            <!-- Menú desktop: dropdown con avatar y nombre -->
+                            <li class="nav-item dropdown d-none d-lg-block">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="<?php echo $avatar_url; ?>" alt="Avatar" class="rounded-circle me-2 avatarCabecera">
+                                    <?php echo $_SESSION['nombre_usuario']; ?>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL; ?>views/perfil.php">Mi Perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="<?php echo BASE_URL; ?>controllers/logout.php">Cerrar sesión</a></li>
+                                </ul>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo BASE_URL; ?>views/login.php">Iniciar sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo BASE_URL; ?>views/registro.php">Registrarse</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <div class="container">
+    <div class="container py-4">

@@ -7,19 +7,19 @@ class Juego {
     }
     
     // Añadir un nuevo juego
-    public function añadir($titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula, $id_usuario) {
-        // Preparar la consulta SQL
-        $stmt = $this->conexion->prepare("INSERT INTO videojuegos (titulo, fecha_inicio, fecha_fin, horas_jugadas, plataforma, caratula, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    public function anyadir($titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $caratula, $puntuacion, $resenya, $idUsuario) {
+        // Preparar consulta
+        $stmt = $this->conexion->prepare("INSERT INTO videojuegos (titulo, fecha_inicio, fecha_fin, horas_jugadas, plataforma, caratula, puntuacion, resenya, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
-        // Si caratula es null o vacío, usar NULL en la base de datos
+        // Si carátula es null
         if (empty($caratula)) {
-            // Definir $null_value antes de usarlo
-            $null_value = null;
-            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $null_value, $id_usuario);
+            $valorNulo = null;
+            $stmt->bind_param("sssdssisi", $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $valorNulo, $puntuacion, $resenya, $idUsuario);
         } else {
-            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula, $id_usuario);
+            $stmt->bind_param("sssdssisi", $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $caratula, $puntuacion, $resenya, $idUsuario);
         }
         
+        // Ejecutar
         if ($stmt->execute()) {
             return $this->conexion->insert_id;
         }
@@ -28,26 +28,27 @@ class Juego {
     }
     
     // Editar un juego existente
-    public function editar($id, $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula) {
+    public function editar($id, $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $caratula, $puntuacion, $resenya) {
+        // Mismo patrón que anyadir()
         // Preparar la consulta SQL
-        $stmt = $this->conexion->prepare("UPDATE videojuegos SET titulo = ?, fecha_inicio = ?, fecha_fin = ?, horas_jugadas = ?, plataforma = ?, caratula = ? WHERE id = ?");
+        $stmt = $this->conexion->prepare("UPDATE videojuegos SET titulo = ?, fecha_inicio = ?, fecha_fin = ?, horas_jugadas = ?, plataforma = ?, caratula = ?, puntuacion = ?, resenya = ? WHERE id = ?");
         
         // Si caratula es null o vacío, usar NULL en la base de datos
         if (empty($caratula)) {
-            // Definir $null_value antes de usarlo
-            $null_value = null;
-            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $null_value, $id);
+            // Definir $valorNulo antes de usarlo
+            $valorNulo = null;
+            $stmt->bind_param("sssdssisi", $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $valorNulo, $puntuacion, $resenya, $id);
         } else {
-            $stmt->bind_param("sssissi", $titulo, $fecha_inicio, $fecha_fin, $horas_jugadas, $plataforma, $caratula, $id);
+            $stmt->bind_param("sssdssisi", $titulo, $fechaInicio, $fechaFin, $horasJugadas, $plataforma, $caratula, $puntuacion, $resenya, $id);
         }
         
         return $stmt->execute() && $stmt->affected_rows > 0;
     }
     
     // Obtener todos los juegos de un usuario
-    public function obtenerPorUsuario($id_usuario) {
+    public function obtenerPorUsuario($idUsuario) {
         $stmt = $this->conexion->prepare("SELECT * FROM videojuegos WHERE id_usuario = ? ORDER BY fecha_fin DESC");
-        $stmt->bind_param("i", $id_usuario);
+        $stmt->bind_param("i", $idUsuario);
         $stmt->execute();
         $result = $stmt->get_result();
         
@@ -74,9 +75,9 @@ class Juego {
     }
     
     // Eliminar un juego
-    public function eliminar($id, $id_usuario) {
+    public function eliminar($id, $idUsuario) {
         $stmt = $this->conexion->prepare("DELETE FROM videojuegos WHERE id = ? AND id_usuario = ?");
-        $stmt->bind_param("ii", $id, $id_usuario);
+        $stmt->bind_param("ii", $id, $idUsuario);
         
         return $stmt->execute() && $stmt->affected_rows > 0;
     }

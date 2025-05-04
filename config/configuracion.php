@@ -35,25 +35,28 @@ function obtenerBaseUrl() {
 define('BASE_URL', obtenerBaseUrl());
 
 // Definir constantes para uploads
-define('UPLOADS_DIR', 'assets/uploads/');
-define('UPLOADS_PATH', ROOT_PATH . UPLOADS_DIR);
-define('CARATULAS_DIR', UPLOADS_DIR . 'caratulas/');
-define('CARATULAS_PATH', ROOT_PATH . CARATULAS_DIR);
+define('DIR_DESCARGAS', 'assets/uploads/');
+define('RUTA_DESCARGAS', ROOT_PATH . DIR_DESCARGAS);
+define('DIR_CARATULAS', 'uploads/caratulas/');
+define('RUTA_CARATULAS', ROOT_PATH . DIR_CARATULAS);
+define('DIR_AVATARES', 'uploads/avatars/');
+define('RUTA_AVATARES', ROOT_PATH . DIR_AVATARES);
+
 
 // Incluir archivos necesarios
 require_once ROOT_PATH . 'config/conexion.php';
 require_once ROOT_PATH . 'includes/funciones.php';
 
 // Crear la estructura de carpetas si no existe
-if (!file_exists(UPLOADS_PATH)) {
-    mkdir(UPLOADS_PATH, 0777, true);
+if (!file_exists(RUTA_DESCARGAS)) {
+    mkdir(RUTA_DESCARGAS, 0777, true);
 }
-if (!file_exists(CARATULAS_PATH)) {
-    mkdir(CARATULAS_PATH, 0777, true);
+if (!file_exists(RUTA_CARATULAS)) {
+    mkdir(RUTA_CARATULAS, 0777, true);
     
     // Crear un archivo index.html para proteger el directorio
     $index_content = '<!DOCTYPE html><html><head><title>Acceso Denegado</title></head><body><h1>Acceso Denegado</h1><p>No tienes permiso para ver el contenido de este directorio.</p></body></html>';
-    file_put_contents(CARATULAS_PATH . 'index.html', $index_content);
+    file_put_contents(RUTA_CARATULAS . 'index.html', $index_content);
 }
 
 // Función para depurar
