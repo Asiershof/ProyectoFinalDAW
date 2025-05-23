@@ -45,7 +45,7 @@
                             <?php
                             $plataformas = [
                                 "PC", "PlayStation 5", "PlayStation 4", "Xbox Series X/S", "Xbox One",
-                                "Nintendo Switch", "Nintendo 3DS", "Mobile", "Otra"
+                                "Nintendo Switch", "Nintendo 3DS", "Móvil", "Emulador", "Consola antigua", "Otra"
                             ];
                             foreach ($plataformas as $plataforma) {
                                 $selected = ($juego['plataforma'] === $plataforma) ? 'selected' : '';
