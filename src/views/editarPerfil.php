@@ -33,7 +33,7 @@
                         <div class="mb-3">
                             <label for="current_password" class="form-label">Contraseña actual:</label>
                             <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Introduce tu contraseña actual para cambiarla">
-                            <div class="form-text">Deja los siguientes campos en blanco si no quieres cambiar la contraseña.</div>
+                            <div class="form-text">Deja este campo y los siguientes en blanco si no quieres cambiar la contraseña.</div>
                         </div>
                         <div class="mb-3">
                             <label for="new_password" class="form-label">Nueva contraseña:</label>
