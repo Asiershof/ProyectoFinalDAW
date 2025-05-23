@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca de Juegos Completados</title>
+    <title>EndGame: Tu Biblioteca de Juegos Completados</title>
+    <link rel="icon" href="<?php echo BASE_URL; ?>assets/img/favicon.ico" type="image/x-icon">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -17,7 +18,10 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="<?php echo BASE_URL; ?>index.php">Mi Biblioteca de Juegos</a>
+                <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>index.php">
+                    <img src="<?php echo BASE_URL; ?>assets/img/logo.png" alt="Logo" class="me-2 logo logo-animado">
+                    <span class="marca-texto">End<span class="text-primary">Game</span></span>
+                </a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

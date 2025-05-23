@@ -8,9 +8,9 @@ include ROOT_PATH . 'views/layouts/header.php';
     <div class="container">
         <section class="mb-5">
             <div class="bg-white rounded shadow-sm p-4 text-center">
-                <h2 class="mb-3">¿Qué es esta página?</h2>
+                <h2 class="mb-3">¿Qué es EndGame?</h2>
                 <p class="lead">
-                    Esta página te permite guardar y gestionar los datos de los videojuegos que has completado. 
+                    EndGame es una página te permite guardar y gestionar los datos de los videojuegos que has completado. 
                     Podrás registrar varios datos de tu juego a la hora de añadirlo junto con una imagen de la carátula del juego y hasta poder darle una puntuación.
                 </p>
             </div>
@@ -38,8 +38,8 @@ include ROOT_PATH . 'views/layouts/header.php';
                 <div class="col">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h4 class="card-title">Puntua que te ha parecido</h4>
-                            <p class="card-text">Añade una valoración a tu juego e incluso una breve descripción de que te ha parecido.</p>
+                            <h4 class="card-title">Puntúa qué te ha parecido</h4>
+                            <p class="card-text">Añade una valoración a tu juego e incluso una breve descripción de qué te ha parecido.</p>
                         </div>
                     </div>
                 </div>

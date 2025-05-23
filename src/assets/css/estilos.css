@@ -32,6 +32,24 @@ main {
     color: #3498db !important;
 }
 
+.logo-animado {
+    transition: transform 0.3s;
+}
+
+.navbar-brand:hover .logo-animado {
+    transform: scale(1.1);
+}
+
+.marca-texto {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
 .navbar .dropdown-toggle img.avatarCabecera {
     width: 35px;
     height: 35px;
@@ -248,12 +266,6 @@ footer .hover-link:hover {
     transform: scale(1.05);
 }
 
-.avatarCabecera {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-}
-
 .tamanoVistaAvatar {
     width: 150px;
     height: 150px;
@@ -328,22 +340,24 @@ footer .hover-link:hover {
 .fondoFormularioOscuro input,
 .fondoFormularioOscuro select,
 .fondoFormularioOscuro textarea {
-    background: #4b4b4bd6;
-    color: #fff;
+    background: #e5e5e5;
 }
 
 .fondoFormularioOscuro input:focus,
 .fondoFormularioOscuro select:focus,
 .fondoFormularioOscuro textarea:focus {
-    background: #33383d;
-    color: #fff;
-    border-color: #3498db;
+    background: white;
 }
 
 .campoObligatorio::after {
     content: " *";
     color: #dc3545;
     font-weight: bold;
+}
+
+.form-control:focus {
+    border-color: #d9d9d940;
+    box-shadow: 0 0 0 .25rem rgba(217, 217, 217, 0.251);
 }
 
 /* ============================================
