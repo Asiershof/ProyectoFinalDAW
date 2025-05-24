@@ -23,7 +23,7 @@ include ROOT_PATH . 'views/layouts/header.php';
 <main class="py-5 my-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 col-lg-5">
                 <section class="bg-white rounded shadow-sm p-4 mb-4">
                     <h2 class="mb-4 text-center">Iniciar sesión</h2>
 
